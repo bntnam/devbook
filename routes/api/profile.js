@@ -71,21 +71,39 @@ router.post(
 
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (company) profileFields.company = company;
-    if (website) profileFields.website = website;
-    if (location) profileFields.location = location;
-    if (bio) profileFields.bio = bio;
+    company
+      ? (profileFields.company = company)
+      : (profileFields.company = '');
+    website
+      ? (profileFields.website = website)
+      : (profileFields.website = '');
+    location
+      ? (profileFields.location = location)
+      : (profileFields.location = '');
+    bio ? (profileFields.bio = bio) : (profileFields.bio = '');
     if (status) profileFields.status = status;
-    if (githubusername) profileFields.githubusername = githubusername;
+    githubusername
+      ? (profileFields.githubusername = githubusername)
+      : (profileFields.githubusername = '');
     if (skills) {
       profileFields.skills = skills.split(',').map(skill => skill.trim());
     }
     profileFields.social = {};
-    if (youtube) profileFields.social.youtube = youtube;
-    if (twitter) profileFields.social.twitter = twitter;
-    if (facebook) profileFields.social.facebook = facebook;
-    if (linkedin) profileFields.social.linkedin = linkedin;
-    if (instagram) profileFields.social.instagram = instagram;
+    youtube
+      ? (profileFields.social.youtube = youtube)
+      : (profileFields.social.youtube = '');
+    twitter
+      ? (profileFields.social.twitter = twitter)
+      : (profileFields.social.twitter = '');
+    facebook
+      ? (profileFields.social.facebook = facebook)
+      : (profileFields.social.facebook = '');
+    linkedin
+      ? (profileFields.social.linkedin = linkedin)
+      : (profileFields.social.linkedin = '');
+    instagram
+      ? (profileFields.social.instagram = instagram)
+      : (profileFields.social.instagram = '');
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
