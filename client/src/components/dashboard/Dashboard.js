@@ -17,7 +17,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
